@@ -30,6 +30,8 @@ to quickly create a Cobra application.`,
 			showHotTopic(topicService)
 		case "last":
 			showLatestTopic(topicService)
+		case "reply":
+			showReplies(topicService, args[1])
 		default:
 			showTopic(topicService, subCmd)
 		}
@@ -75,4 +77,19 @@ func showTopic(s v2ex.TopicService, id string) {
 
 	topic, err := s.GetTopicByID(topicId)
 	fmt.Printf("%s\n", s.TopicDetail(topic))
+}
+
+func showReplies(s v2ex.TopicService, id string) {
+	topicId, err := strconv.Atoi(id)
+	if err != nil {
+		panic(err)
+	}
+
+	replies, err := s.GetRepliesByTopicID(topicId)
+
+	for idx, reply := range replies {
+		fmt.Printf("Id: %d", idx)
+		fmt.Printf("%s", s.ReplyDetail(&reply))
+		fmt.Println("------------------------\n")
+	}
 }

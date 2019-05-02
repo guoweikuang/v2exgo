@@ -31,6 +31,8 @@ type TopicService interface {
 	TopicSummary(t *Topic) string
 	GetLatestTopic() ([]Topic, error)
 	GetTopicByID(id int) (*Topic, error)
+	GetRepliesByTopicID(id int) ([]Reply, error)
 
 	TopicDetail(t *Topic) string
+	ReplyDetail(r *Reply) string
 }
