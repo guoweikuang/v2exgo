@@ -13,3 +13,6 @@
 
 # .idea
 .idea
+
+# .swp
+*.swp
